@@ -22,7 +22,9 @@ export default function HinoSelecionado ({ route }: any) {
                     </Text> */}
                     <Text>
                         {verso.chorus ? (
-                            `\n${verso.lyrics}`
+                            <Text style={style.sequence}>
+                            {'\n'}{verso.lyrics}
+                            </Text>
                         ) : (
                             <>
                             {verso.sequence > 2 ? (

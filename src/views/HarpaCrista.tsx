@@ -7,7 +7,6 @@ import Icon from 'react-native-vector-icons/Feather'; //https://feathericons.com
 
 
 export default function HarpaCrista(props:any) {
-
     const [searchText, setSearchText] = useState('');
 
     const filtrarHinos = (hino: any) => {
@@ -24,7 +23,10 @@ export default function HarpaCrista(props:any) {
 
     const getHinosItem = ({ item }: any) => {
         return (
-            <Text style={style.hinos} onPress={() => props.navigation.navigate('HinoSelecionado', { hino: item })} >
+            <Text
+                style={style.hinos}
+                onPress={() => props.navigation.navigate('HinoSelecionado', { hino: item })}
+                >
                 {item.number} <Icon name="chevron-right" size={15} /> {item.title}
             </Text>
         );
@@ -41,6 +43,7 @@ export default function HarpaCrista(props:any) {
             <TextInput
                 style={style.pesquisa}
                 placeholder=" Procure o hino pelo nome ou número"
+                placeholderTextColor="black"
                 value={searchText}
                 onChangeText={setSearchText}
             />

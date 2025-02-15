@@ -50,7 +50,7 @@ export default function HinoSelecionado ({ route }: any) {
                     onPressIn={() => setIsPressed('zoom-out')}
                     onPressOut={() => setIsPressed('')}
                     style={StyleSheet.flatten([
-                        style.zoomButtons,
+                        style.zoomOut,
                         isPressed === 'zoom-out' && style.pressedButton,
                     ])}
                 />
@@ -62,7 +62,7 @@ export default function HinoSelecionado ({ route }: any) {
                     onPressIn={() => setIsPressed('zoom-in')}
                     onPressOut={() => setIsPressed('')}
                     style={StyleSheet.flatten([
-                        style.zoomButtons,
+                        style.zoomIn,
                         isPressed === 'zoom-in' && style.pressedButton,
                     ])}
                 />
@@ -104,16 +104,24 @@ const style = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         backgroundColor: 'lightgray',
-        paddingVertical: 10,
+
     },
-    zoomButtons: {
+    zoomOut: {
         backgroundColor: 'lightgray',
         paddingVertical: 10,
         paddingHorizontal: 20,
-        borderRadius: 50,
+        flex: 1,
+        textAlign: 'center',
+    },
+    zoomIn: {
+        backgroundColor: 'lightgray',
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        flex: 1,
+        textAlign: 'center',
     },
     pressedButton: {
-        backgroundColor: 'darkgray',
+        backgroundColor: 'gray',
         color: 'white',
     },
 });

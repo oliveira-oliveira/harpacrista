@@ -15,8 +15,8 @@ export default function HarpaCrista(props:any) {
 
         return (
             hino.title.toLowerCase().includes(texto) ||
-            hino.number.toString().includes(searchText) ||
-            hino.verses.some((verso: any) => verso.lyrics.toLowerCase().includes(texto))
+            hino.number.toString().includes(searchText) 
+            //|| hino.verses.some((verso: any) => verso.lyrics.toLowerCase().includes(texto))
         );
     };
 
@@ -24,7 +24,7 @@ export default function HarpaCrista(props:any) {
 
     const getHinosItem = ({ item }: any) => {
         return (
-            <Text style={style.hino} onPress={() => props.navigation.navigate('HinoSelecionado', { hino: item })} >
+            <Text style={style.hinos} onPress={() => props.navigation.navigate('HinoSelecionado', { hino: item })} >
                 {item.number} <Icon name="chevron-right" size={15} /> {item.title}
             </Text>
         );
@@ -48,22 +48,23 @@ export default function HarpaCrista(props:any) {
                 keyExtractor={(hino) => hino._id.$oid}
                 data={hinosFiltrados}
                 renderItem={getHinosItem}
-                />
+            />
         </View>
     );
 }
 
 const style = StyleSheet.create({
     container: {
-        backgroundColor: 'white',
+        backgroundColor: 'whitesmoke',
+        flex: 1,
     },
-    hino: {
-        justifyContent: 'space-around',
+    hinos: {
         margin: 2,
         padding: 15,
         fontWeight: 'bold',
         borderBottomWidth: 1,
         borderBottomColor: 'lightgray',
+        fontSize: 15,
     },
     pesquisa: {
         height: 40,

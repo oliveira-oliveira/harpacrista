@@ -17,10 +17,6 @@ export default function HinoSelecionado ({ route }: any) {
     const { hino } = route.params;
     const chorus = hino.verses.some((v:any) => v.chorus);
 
-    if (loading) {
-        return <Loading />;
-    }
-
     return (
         <View style={style.container}>
         {

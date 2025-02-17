@@ -27,49 +27,49 @@ export default function HinoSelecionado ({ route }: any) {
             loading ? (
                 <Loading />
             ) :
-                (
-                    <ScrollView showsVerticalScrollIndicator={false}>
-                                    <Text style={style.title}>{hino.number} - {hino.title}</Text>
-                                        {
-                                            hino.verses.map((verso: any) => (
-                                                <Text
-                                                    style={verso.chorus ? style.chorus : style.verse}
-                                                    key={verso.sequence}
-                                                >
-                                                    <Text>
-                                                        {verso.chorus ? (
-                                                            <Text style={[style.sequence, { fontSize: zoom }]}>
-                                                            {'\n'}{verso.lyrics}
-                                                            </Text>
-                                                        ) : (
-                                                            <>
-                                                            {verso.sequence > 2 ? (
-                                                                <Text style={style.sequence}>
-                                                                    {verso.sequence - (chorus ? 1 : 0)}
-                                                                </Text>
-                                                            ) : (
-                                                                <Text style={style.sequence}>{verso.sequence}</Text>
-                                                            )}
-                                                            {'\n'}
-                                                                <Text style={{ fontSize: zoom }}>{verso.lyrics}</Text>
-                                                            </>
-                                                        )}
-                                                        </Text>
+            (
+                <ScrollView showsVerticalScrollIndicator={false}>
+                    <Text style={style.title}>{hino.number} - {hino.title}</Text>
+                        {
+                            hino.verses.map((verso: any) => (
+                                <Text
+                                    style={verso.chorus ? style.chorus : style.verse}
+                                    key={verso.sequence}
+                                >
+                                    <Text>
+                                        {verso.chorus ? (
+                                            <Text style={[style.sequence, { fontSize: zoom }]}>
+                                            {'\n'}{verso.lyrics}
+                                            </Text>
+                                        ) : (
+                                            <>
+                                            {verso.sequence > 2 ? (
+                                                <Text style={style.sequence}>
+                                                    {verso.sequence - (chorus ? 1 : 0)}
                                                 </Text>
-                                            ))
-                                        }
-                                    <Text style={style.autor}>Autor: {hino.author}</Text>
-                                    {/* <View>
-                                        <Text
-                                            onPress={() => Linking.openURL('https://www.youtube.com')}
-                                        >
-                                            title='Ouvir'
-
+                                            ) : (
+                                                <Text style={style.sequence}>{verso.sequence}</Text>
+                                            )}
+                                            {'\n'}
+                                                <Text style={{ fontSize: zoom }}>{verso.lyrics}</Text>
+                                            </>
+                                        )}
                                         </Text>
-                                    </View> */}
-                        </ScrollView>
-                    )
-                }
+                                </Text>
+                            ))
+                        }
+                    <Text style={style.autor}>Autor: {hino.author}</Text>
+                    {/* <View>
+                        <Text
+                            onPress={() => Linking.openURL('https://www.youtube.com')}
+                        >
+                            title='Ouvir'
+
+                        </Text>
+                    </View> */}
+                </ScrollView>
+            )
+        }
             <View style={style.zoomBar}>
                 <Icon
                     name="zoom-out"

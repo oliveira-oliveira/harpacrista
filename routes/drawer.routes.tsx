@@ -1,23 +1,24 @@
 /* eslint-disable react/react-in-jsx-scope */
 
 import { createDrawerNavigator } from '@react-navigation/drawer';
-
-import HarpaCrista from '../src/views/HarpaCrista';
-import HinoSelecionado from '../src/views/HinoSelecionado';
+import StackRoutes from './stack_hinos.routes';
+import StackTesteRoutes from './stack_temas.routes';
+//import Icon from 'react-native-vector-icons/Feather'; //https://feathericons.com/
 
 const Drawer = createDrawerNavigator();
 
 export default function DrawerRoutes() {
     return (
-        <Drawer.Navigator>
+        <Drawer.Navigator screenOptions={{ headerShown: false }} >
             <Drawer.Screen
                 name="Harpa Cristã"
-                component={HarpaCrista}
+                component={StackRoutes}
             />
             <Drawer.Screen
-                name="HinoSelecionado"
-                component={HinoSelecionado}
+                name="HinosPorTema"
+                component={StackTesteRoutes}
+                options={{ headerShown: false }}
             />
         </Drawer.Navigator>
     );
-};
+}

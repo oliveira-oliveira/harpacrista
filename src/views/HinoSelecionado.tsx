@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Linking, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather'; //https://feathericons.com/
 
 export default function HinoSelecionado ({ route }: any) {
@@ -40,6 +40,14 @@ export default function HinoSelecionado ({ route }: any) {
                         </Text>
                     ))}
                 <Text style={style.autor}>Autor: {hino.author}</Text>
+                {/* <View>
+                    <Text
+                        onPress={() => Linking.openURL('https://www.youtube.com')}
+                    >
+                        title='Ouvir'
+
+                    </Text>
+                </View> */}
             </ScrollView>
             <View style={style.zoomBar}>
                 <Icon

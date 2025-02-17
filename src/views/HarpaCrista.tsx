@@ -14,7 +14,7 @@ export default function HarpaCrista(props:any) {
 
         return (
             hino.title.toLowerCase().includes(texto) ||
-            hino.number.toString().includes(searchText) 
+            hino.number.toString().includes(searchText)
             //|| hino.verses.some((verso: any) => verso.lyrics.toLowerCase().includes(texto))
         );
     };

@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import hinos from '../Hinos/hinos.json';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather'; //https://feathericons.com/
 import { useNavigation } from '@react-navigation/native';
+import Loading from '../components/Loading';
 
 export default function TemaSelecionado({ route }: any | null) {
     const { tema } = route.params;
+    const [loading, setLoading ] = useState(true);
+
     const navigation = useNavigation();
+
+    useEffect(() => {
+        setTimeout(() => {
+            setLoading(false);
+        }, 500);
+    }, []);
 
     const hinosDosTema = (temas: number[], navigation?: any) => {
         return temas.map((tema:any) => {
@@ -28,13 +37,18 @@ export default function TemaSelecionado({ route }: any | null) {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>{tema.title}</Text>
-
-            <ScrollView>
-                <View>
-                    {hinosDosTema(tema.data, navigation)}
-                </View>
-            </ScrollView>
+            <Text style={styles.title}>Tema: {tema.title}</Text>
+            {
+                loading ? (
+                    <Loading />
+                ) : (
+                    <ScrollView>
+                        <View>
+                           {hinosDosTema(tema.data, navigation)}
+                        </View>
+                    </ScrollView>
+                )
+            }
         </View>
     );
 }

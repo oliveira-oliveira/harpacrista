@@ -2,31 +2,47 @@
 import React, { FlatList, StyleSheet, Text, View } from 'react-native';
 import temas from '../Temas/Temas.json';
 import Icon from 'react-native-vector-icons/Feather'; //https://feathericons.com/
+import { useEffect, useState } from 'react';
+import Loading from '../components/Loading';
 
 
 export default function HinosPorTema({ navigation }:any ) {
+    const[loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setLoading(false);
+        }, 500);
+    }, []);
 
     const getTemasItem = ({ item }: any) => {
-            return (
-                <Text
-                    style={style.hinos}
-                        onPress={() => {
-                            navigation.navigate('TemaSelecionado', {tema: item});
-                        }
+        return (
+            <Text
+                style={style.hinos}
+                    onPress={() => {
+                        navigation.navigate('TemaSelecionado', {tema: item});
                     }
-                    >
-                    <Icon name="chevron-right" size={15} /> {item.title}
-                </Text>
-            );
-        };
+                }
+                >
+                <Icon name="chevron-right" size={15} /> {item.title}
+            </Text>
+        );
+    };
 
     return (
         <View>
-            <FlatList
-                data={temas}
-                renderItem={getTemasItem}
-                keyExtractor={(x) => x._id.$oid}
-            />
+            {
+                loading ? (
+                    <Loading />
+                ) :
+                (
+                    <FlatList
+                        data={temas}
+                        renderItem={getTemasItem}
+                        keyExtractor={(x) => x._id.$oid}
+                    />
+                )
+            }
         </View>
     );
 }

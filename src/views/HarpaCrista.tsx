@@ -1,32 +1,38 @@
-import React, { useCallback, useState } from 'react';
+
+import React, { useCallback, useEffect, useState } from 'react';
 import { FlatList, StyleSheet, Text, TextInput, View } from 'react-native';
 import hinos from '../Hinos/hinos.json';
 import { useFocusEffect } from '@react-navigation/native';
-//import Icon from 'react-native-vector-icons/FontAwesome'; //https://fontawesome.com/v4/icons/
-import Icon from 'react-native-vector-icons/Feather'; //https://feathericons.com/
+import Icon from 'react-native-vector-icons/Feather'; 
+import Loading from '../components/Loading';
 
-
-export default function HarpaCrista(props:any) {
+export default function HarpaCrista(props: any) {
     const [searchText, setSearchText] = useState('');
+    const [loading, setLoading] = useState(true);
+    const [hinosFiltrados, setHinosFiltrados] = useState(hinos);
 
-    const filtrarHinos = (hino: any) => {
+    useEffect(() => {
+        setTimeout(() => {
+            setLoading(false);
+        }, 500);
+    }, []);
+
+    useEffect(() => {
         const texto = searchText.toLowerCase();
-
-        return (
+        const filtrados = hinos.filter((hino) =>
             hino.title.toLowerCase().includes(texto) ||
             hino.number.toString().includes(searchText)
             //|| hino.verses.some((verso: any) => verso.lyrics.toLowerCase().includes(texto))
         );
-    };
-
-    const hinosFiltrados = hinos.filter(filtrarHinos);
+        setHinosFiltrados(filtrados);
+    }, [searchText]);
 
     const getHinosItem = ({ item }: any) => {
         return (
             <Text
                 style={style.hinos}
                 onPress={() => props.navigation.navigate('HinoSelecionado', { hino: item })}
-                >
+            >
                 {item.number} <Icon name="chevron-right" size={15} /> {item.title}
             </Text>
         );
@@ -47,11 +53,16 @@ export default function HarpaCrista(props:any) {
                 value={searchText}
                 onChangeText={setSearchText}
             />
-            <FlatList
-                keyExtractor={(hino) => hino._id.$oid}
-                data={hinosFiltrados}
-                renderItem={getHinosItem}
-            />
+
+            {loading ? (
+                <Loading />
+            ) : (
+                <FlatList
+                    keyExtractor={(hino) => hino._id.$oid}
+                    data={hinosFiltrados}
+                    renderItem={getHinosItem}
+                />
+            )}
         </View>
     );
 }

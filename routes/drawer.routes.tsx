@@ -15,7 +15,7 @@ export default function DrawerRoutes() {
                 component={StackRoutes}
             />
             <Drawer.Screen
-                name="HinosPorTema"
+                name="Hinos por temas"
                 component={StackTesteRoutes}
                 options={{ headerShown: false }}
             />

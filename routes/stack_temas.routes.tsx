@@ -28,12 +28,12 @@ export default function StackTesteRoutes(props:any) {
             <Stack.Screen
                 name="TemaSelecionado"
                 component={TemaSelecionado}
-                options={{ title: 'Harpa Cristã', headerShown: true }}
+                options={{ title: 'Hinos por tema', headerShown: true }}
             />
             <Stack.Screen
                 name="HinoSelecionado"
                 component={HinoSelecionado}
-                options={{ title: 'Harpa Cristã', headerShown: true }}
+                options={{ title: 'Hinos por tema', headerShown: true }}
             />
         </Stack.Navigator>
     );

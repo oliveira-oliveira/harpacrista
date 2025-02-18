@@ -10986,6 +10986,36 @@
   },
   {
     "_id": {
+      "$oid": "65d722b8fc66c875dc0ee144"
+    },
+    "title": "Mui Perto Está O Dia",
+    "verses": [
+      {
+        "sequence": 1,
+        "lyrics": "Perto, sim, mui perto está,\nO dia não tardará;\nIremos nós residir\nCom Jesus, que há de vir.",
+        "chorus": false
+      },
+      {
+        "sequence": 2,
+        "lyrics": "Oh! Quanta glória há de ser,\nse Cristo hoje descer,\nPois os fiéis em Jesus,\nGozarão eterna luz!",
+        "chorus": false
+      },
+      {
+        "sequence": 3,
+        "lyrics": "Que glória imensa, sem par,\nHavemos nós de gozar\nAo lado, sim, do Senhor,\nNosso amado Salvador!",
+        "chorus": false
+      },
+      {
+        "sequence": 4,
+        "lyrics": "Devemos, pois, esperar,\nE ao mundo olhos fechar;\nAndemos sempre na luz,\nA buscar o Rei Jesus.",
+        "chorus": false
+      }
+    ],
+    "author": "***",
+    "number": 355
+  },
+  {
+    "_id": {
       "$oid": "65d722b8fc66c875dc0ee130"
     },
     "title": "Oração De Elias",
@@ -11017,7 +11047,7 @@
       }
     ],
     "author": "***",
-    "number": 335
+    "number": 336
   },
   {
     "_id": {
@@ -11047,7 +11077,7 @@
       }
     ],
     "author": "***",
-    "number": 336
+    "number": 337
   },
   {
     "_id": {
@@ -11077,7 +11107,7 @@
       }
     ],
     "author": "***",
-    "number": 337
+    "number": 338
   },
   {
     "_id": {
@@ -11112,7 +11142,7 @@
       }
     ],
     "author": "***",
-    "number": 338
+    "number": 339
   },
   {
     "_id": {
@@ -11147,7 +11177,7 @@
       }
     ],
     "author": "***",
-    "number": 339
+    "number": 340
   },
   {
     "_id": {
@@ -11172,7 +11202,7 @@
       }
     ],
     "author": "***",
-    "number": 340
+    "number": 341
   },
   {
     "_id": {
@@ -11207,7 +11237,7 @@
       }
     ],
     "author": "***",
-    "number": 341
+    "number": 342
   },
   {
     "_id": {
@@ -11247,7 +11277,7 @@
       }
     ],
     "author": "***",
-    "number": 342
+    "number": 343
   },
   {
     "_id": {
@@ -11282,7 +11312,7 @@
       }
     ],
     "author": "***",
-    "number": 343
+    "number": 344
   },
   {
     "_id": {
@@ -11312,7 +11342,7 @@
       }
     ],
     "author": "***",
-    "number": 344
+    "number": 345
   },
   {
     "_id": {
@@ -11352,7 +11382,7 @@
       }
     ],
     "author": "***",
-    "number": 345
+    "number": 346
   },
   {
     "_id": {
@@ -11382,7 +11412,7 @@
       }
     ],
     "author": "***",
-    "number": 346
+    "number": 347
   },
   {
     "_id": {
@@ -11412,7 +11442,7 @@
       }
     ],
     "author": "***",
-    "number": 347
+    "number": 348
   },
   {
     "_id": {
@@ -11447,7 +11477,7 @@
       }
     ],
     "author": "***",
-    "number": 348
+    "number": 349
   },
   {
     "_id": {
@@ -11482,7 +11512,7 @@
       }
     ],
     "author": "***",
-    "number": 349
+    "number": 350
   },
   {
     "_id": {
@@ -11527,7 +11557,7 @@
       }
     ],
     "author": "***",
-    "number": 350
+    "number": 351
   },
   {
     "_id": {
@@ -11552,7 +11582,7 @@
       }
     ],
     "author": "***",
-    "number": 351
+    "number": 352
   },
   {
     "_id": {
@@ -11582,7 +11612,7 @@
       }
     ],
     "author": "***",
-    "number": 352
+    "number": 353
   },
   {
     "_id": {
@@ -11612,7 +11642,7 @@
       }
     ],
     "author": "***",
-    "number": 353
+    "number": 354
   },
   {
     "_id": {
@@ -11638,36 +11668,6 @@
       {
         "sequence": 4,
         "lyrics": "Canta com esperança,\nNa escuridão também,\nCanta com confiança,\nHá vida no além;\nCanta no alvor do dia,\nE quando a noite vem;\nEm Cristo, harmonia\nCom Deus se obtém!",
-        "chorus": false
-      }
-    ],
-    "author": "***",
-    "number": 354
-  },
-  {
-    "_id": {
-      "$oid": "65d722b8fc66c875dc0ee144"
-    },
-    "title": "Mui Perto Está O Dia",
-    "verses": [
-      {
-        "sequence": 1,
-        "lyrics": "Perto, sim, mui perto está,\nO dia não tardará;\nIremos nós residir\nCom Jesus, que há de vir.",
-        "chorus": false
-      },
-      {
-        "sequence": 2,
-        "lyrics": "Oh! Quanta glória há de ser,\nse Cristo hoje descer,\nPois os fiéis em Jesus,\nGozarão eterna luz!",
-        "chorus": false
-      },
-      {
-        "sequence": 3,
-        "lyrics": "Que glória imensa, sem par,\nHavemos nós de gozar\nAo lado, sim, do Senhor,\nNosso amado Salvador!",
-        "chorus": false
-      },
-      {
-        "sequence": 4,
-        "lyrics": "Devemos, pois, esperar,\nE ao mundo olhos fechar;\nAndemos sempre na luz,\nA buscar o Rei Jesus.",
         "chorus": false
       }
     ],

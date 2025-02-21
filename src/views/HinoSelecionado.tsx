@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather'; //https://feathericons.com/
 import Loading from '../components/Loading';
+import Play from '../components/Play';
 
 export default function HinoSelecionado ({ route }: any) {
     const[zoom, setZoom] = useState(14);
@@ -63,6 +64,9 @@ export default function HinoSelecionado ({ route }: any) {
 
                         </Text>
                     </View> */}
+                    <View>
+                        <Play numeroHino={hino.number} />
+                    </View>
                 </ScrollView>
             )
         }
@@ -131,14 +135,14 @@ const style = StyleSheet.create({
         backgroundColor: 'lightgray',
 
     },
-    zoomOut: {
+    zoomIn: {
         backgroundColor: 'lightgray',
         paddingVertical: 10,
         paddingHorizontal: 20,
         flex: 1,
         textAlign: 'center',
     },
-    zoomIn: {
+    zoomOut: {
         backgroundColor: 'lightgray',
         paddingVertical: 10,
         paddingHorizontal: 20,

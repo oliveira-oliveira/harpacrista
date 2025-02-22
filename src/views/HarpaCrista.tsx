@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { FlatList, StyleSheet, Text, TextInput, View } from 'react-native';
 import hinos from '../Hinos/hinos.json';
 import { useFocusEffect } from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/Feather'; 
+import Icon from 'react-native-vector-icons/Feather';
 import Loading from '../components/Loading';
 
 export default function HarpaCrista(props: any) {
@@ -31,7 +31,7 @@ export default function HarpaCrista(props: any) {
         return (
             <Text
                 style={style.hinos}
-                onPress={() => props.navigation.navigate('HinoSelecionado', { hino: item })}
+                onPress={() => props.navigation.navigate('HinoSelecionado', { hinoSelecionado: item })}
             >
                 {item.number} <Icon name="chevron-right" size={15} /> {item.title}
             </Text>

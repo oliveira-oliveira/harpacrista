@@ -13,7 +13,7 @@ const Stack = createStackNavigator();
 export default function StackTesteRoutes(props:any) {
     return (
         <Stack.Navigator screenOptions={{
-            headerStyle: style.itens
+            headerStyle: style.itens,
         }}>
             <Stack.Screen
                 name="HinoPorTema"

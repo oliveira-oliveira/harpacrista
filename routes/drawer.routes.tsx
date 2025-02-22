@@ -39,10 +39,6 @@ const style = StyleSheet.create({
     },
     drawer: {
         width: 200,
-        borderRadius: 0,  // Remove as bordas arredondadas do drawer
-        borderTopLeftRadius: 0,  // Remove borda superior esquerda arredondada
-        borderTopRightRadius: 0, // Remove borda superior direita arredondada
-        elevation: 0, // Evita sombras (se aplicável)
     },
     itens: {
 

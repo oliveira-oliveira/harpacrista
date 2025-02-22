@@ -4,7 +4,7 @@ import Sound from 'react-native-sound';
 import Icon from 'react-native-vector-icons/Feather';
 import { useNavigation } from '@react-navigation/native';
 
-export default function Play({ numeroHino }: { numeroHino: number }) {
+export default function Play({ numeroHino}: { numeroHino: number }) {
     const [sound, setSound] = useState<Sound | null>(null);
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
     const [isPressed, setIsPressed] = useState('');
@@ -77,15 +77,15 @@ export default function Play({ numeroHino }: { numeroHino: number }) {
     return (
         <View style={style.container}>
             <Icon
-                name={isPlaying ? 'pause' : 'play'}
+                name={isPlaying ? 'pause' : 'play-circle'}
                 size={40}
                 color={'black'}
                 onPress={toggleAudio}
                 onPressIn={() => setIsPressed('pressIn')}
-                onPressOut={() => setIsPressed('pressOut')}
+                onPressOut={() => setIsPressed('')}
                 style={StyleSheet.flatten([
                     style.icon,
-                    isPressed === 'pressIn' || isPressed === 'pressIn' ? style.pressed : style.icon,
+                    isPressed === 'pressIn' ? style.pressed : style.icon,
                 ])}
             />
         </View>
@@ -101,10 +101,7 @@ const style = StyleSheet.create({
     icon: {
         backgroundColor: 'lightgray',
         borderRadius: 50,
-        paddingLeft: 10,
-        paddingTop: 10,
-        paddingRight: 10,
-        paddingBottom: 10,
+        padding: 5,
         marginBottom: 10,
         textAlign: 'center',
     },

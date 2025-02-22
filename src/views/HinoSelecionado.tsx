@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather'; //https://feathericons.com/
 import Loading from '../components/Loading';
-import Play from '../components/Play';
+//import Play from '../components/Play';
 import NavegacaoStack from '../components/NavegacaoStack';
 import todosHinos from '../Hinos/hinos.json';
 
 export default function HinoSelecionado ({ route }: any) {
     const[zoom, setZoom] = useState(14);
-    const [isPressed, setIsPressed] = useState('');
+    const[isPressed, setIsPressed] = useState('');
     const[loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -31,7 +31,23 @@ export default function HinoSelecionado ({ route }: any) {
             ) :
             (
                 <ScrollView showsVerticalScrollIndicator={false}>
-                    <NavegacaoStack avancar={proximoHino ? { hino: proximoHino, index: proximoHino } : null} voltar={anteriorHino ? { hino: anteriorHino, index: anteriorHino } : null}>
+                    <NavegacaoStack avancar={
+                                        proximoHino ?
+                                        {
+                                            hino: proximoHino,
+                                            index: proximoHino,
+                                        } :
+                                        null
+                                    }
+                                    voltar={
+                                        anteriorHino ?
+                                        {
+                                            hino: anteriorHino,
+                                            index: anteriorHino,
+                                        } :
+                                        null
+                                    }
+                    >
                         <Text style={style.title}>{hinoSelecionado.number} - {hinoSelecionado.title}</Text>
                             {
                                 hinoSelecionado.verses.map((verso: any) => (
@@ -62,10 +78,10 @@ export default function HinoSelecionado ({ route }: any) {
                                 ))
                             }
                         <Text style={style.autor}>Autor: {hinoSelecionado.author}</Text>
-                        <View>
-                            <Play numeroHino={hinoSelecionado.number} />
-                        </View>
                     </NavegacaoStack>
+                        {/* <View>
+                            <Play numeroHino={hinoSelecionado.number} />
+                        </View> */}
                 </ScrollView>
             )
         }

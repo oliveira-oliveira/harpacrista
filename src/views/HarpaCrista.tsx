@@ -1,10 +1,11 @@
 
 import React, { useCallback, useEffect, useState } from 'react';
-import { FlatList, StyleSheet, Text, TextInput, View } from 'react-native';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
 import hinos from '../Hinos/hinos.json';
 import { useFocusEffect } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Feather';
 import Loading from '../components/Loading';
+import { Input } from 'react-native-elements';
 
 export default function HarpaCrista(props: any) {
     const [searchText, setSearchText] = useState('');
@@ -46,13 +47,16 @@ export default function HarpaCrista(props: any) {
 
     return (
         <View style={style.container}>
-            <TextInput
-                style={style.pesquisa}
-                placeholder=" Procure o hino pelo nome ou número"
-                placeholderTextColor="black"
-                value={searchText}
-                onChangeText={setSearchText}
-            />
+            <View style={style.pesquisa}>
+                {/* <TextInput */}
+                <Input
+                    placeholder=" Procure o hino pelo nome ou número"
+                    placeholderTextColor="black"
+                    value={searchText}
+                    onChangeText={setSearchText}
+                    leftIcon={<Icon name="search" size={24} />}
+                />
+            </View>
 
             {loading ? (
                 <Loading />
@@ -73,18 +77,18 @@ const style = StyleSheet.create({
         flex: 1,
     },
     hinos: {
-        margin: 2,
-        padding: 15,
+        height: 50,
+        textAlignVertical: 'center',
+        paddingLeft: 15,
         fontWeight: 'bold',
         borderBottomWidth: 1,
         borderBottomColor: 'lightgray',
         fontSize: 15,
     },
     pesquisa: {
-        height: 40,
-        borderColor: 'lightgray',
+        height: 50,
         borderWidth: 1,
-        paddingHorizontal: 10,
-        marginBottom: 10,
+        borderColor: 'transparent',
+        fontSize: 16,
     },
 });

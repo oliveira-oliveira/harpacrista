@@ -16,14 +16,14 @@ export default (props) => {
                     <Icon
                         name="arrow-left"
                         color="black"
-                        size={30}
+                        size={34}
                         onPress={() => {
                             navigation.navigate('HinoSelecionado', {
                                 hinoSelecionado: props.voltar.hino,
                             });
                             setAudioStop(true);
                         }}
-                        onPressIn={() => setIsPressed('pressIn')}
+                        onPressIn={() => setIsPressed('pressInLeft')}
                         onPressOut={() => setIsPressed('')}
                         style={StyleSheet.flatten([
                             styles.iconVoltar,
@@ -36,7 +36,7 @@ export default (props) => {
                     <Icon
                         name="arrow-right"
                         color="black"
-                        size={30}
+                        size={34}
                         onPress={() => {
                             navigation.navigate('HinoSelecionado', {
                                 hinoSelecionado: props.avancar.hino,
@@ -74,10 +74,9 @@ export default (props) => {
                     /> :
                     false
                 } */}
-                <View style={{ flex: 1 }}>
+                <View>
                     {props.children}
-                    {console.log('props.number: ', props.avancar.hino.number - 1)}
-                        <Play numeroHino={props.avancar.hino.number - 1} stop={audioStop} />
+                    {/* <Play numeroHino={props.avancar.hino.number - 1} stop={audioStop} /> */}
                 </View>
             </View>
         </View>
@@ -93,8 +92,7 @@ const styles = StyleSheet.create({
     iconVoltar: {
         position: 'absolute',
         left: 10, // Mantém o ícone na lateral esquerda
-        top: '50%', // Move para o meio da tela
-        transform: [{ translateY: -12 }], // Ajusta o alinhamento exato
+        top: 340,//'50%', // Move para o meio da tela
         backgroundColor: 'lightgray',
         borderRadius: 50,
         padding: 5,
@@ -102,8 +100,7 @@ const styles = StyleSheet.create({
     iconAvancar: {
         position: 'absolute',
         right: 10, // Mantém o ícone na lateral direita
-        top: '50%', // Move para o meio da tela
-        transform: [{ translateY: -12 }], // Ajusta o alinhamento exato
+        top: 340, //'50%', // Move para o meio da tela
         backgroundColor: 'lightgray',
         borderRadius: 50,
         padding: 5,

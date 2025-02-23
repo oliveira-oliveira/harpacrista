@@ -5,6 +5,7 @@ import Loading from '../components/Loading';
 //import Play from '../components/Play';
 import NavegacaoStack from '../components/NavegacaoStack';
 import todosHinos from '../Hinos/hinos.json';
+import Play from '../components/Play';
 
 export default function HinoSelecionado ({ route }: any) {
     const[zoom, setZoom] = useState(14);
@@ -48,40 +49,37 @@ export default function HinoSelecionado ({ route }: any) {
                                         null
                                     }
                     >
-                        <Text style={style.title}>{hinoSelecionado.number} - {hinoSelecionado.title}</Text>
-                            {
-                                hinoSelecionado.verses.map((verso: any) => (
-                                    <Text
-                                        style={verso.chorus ? style.chorus : style.verse}
-                                        key={verso.sequence}
-                                    >
-                                        <Text>
-                                            {verso.chorus ? (
-                                                <Text style={[style.sequence, { fontSize: zoom }]}>
-                                                {'\n'}{verso.lyrics}
-                                                </Text>
-                                            ) : (
-                                                <>
-                                                {verso.sequence > 2 ? (
-                                                    <Text style={style.sequence}>
-                                                        {verso.sequence - (chorus ? 1 : 0)}
+                            <Text style={style.title}>{hinoSelecionado.number} - {hinoSelecionado.title}</Text>
+                                {
+                                    hinoSelecionado.verses.map((verso: any) => (
+                                        <Text
+                                            style={verso.chorus ? style.chorus : style.verse}
+                                            key={verso.sequence}
+                                        >
+                                            <Text>
+                                                {verso.chorus ? (
+                                                    <Text style={[style.sequence, { fontSize: zoom }]}>
+                                                    {'\n'}{verso.lyrics}
                                                     </Text>
                                                 ) : (
-                                                    <Text style={style.sequence}>{verso.sequence}</Text>
+                                                    <>
+                                                    {verso.sequence > 2 ? (
+                                                        <Text style={style.sequence}>
+                                                            {verso.sequence - (chorus ? 1 : 0)}
+                                                        </Text>
+                                                    ) : (
+                                                        <Text style={style.sequence}>{verso.sequence}</Text>
+                                                    )}
+                                                    {'\n'}
+                                                        <Text style={{ fontSize: zoom }}>{verso.lyrics}</Text>
+                                                    </>
                                                 )}
-                                                {'\n'}
-                                                    <Text style={{ fontSize: zoom }}>{verso.lyrics}</Text>
-                                                </>
-                                            )}
-                                            </Text>
-                                    </Text>
-                                ))
-                            }
-                        <Text style={style.autor}>Autor: {hinoSelecionado.author}</Text>
+                                                </Text>
+                                        </Text>
+                                    ))
+                                }
+                            <Text style={style.autor}>Autor: {hinoSelecionado.author}</Text>
                     </NavegacaoStack>
-                        {/* <View>
-                            <Play numeroHino={hinoSelecionado.number} />
-                        </View> */}
                 </ScrollView>
             )
         }
@@ -98,6 +96,7 @@ export default function HinoSelecionado ({ route }: any) {
                         isPressed === 'zoom-out' && style.pressedButton,
                     ])}
                 />
+                <Play numeroHino={hinoSelecionado.number} />
                 <Icon
                     name="zoom-in"
                     size={40}
@@ -146,7 +145,7 @@ const style = StyleSheet.create({
     },
     zoomBar: {
         flexDirection: 'row',
-        justifyContent: 'space-around',
+        justifyContent: 'space-evenly',
         backgroundColor: 'lightgray',
 
     },
@@ -154,15 +153,19 @@ const style = StyleSheet.create({
         backgroundColor: 'lightgray',
         paddingVertical: 10,
         paddingHorizontal: 20,
-        flex: 1,
+        borderRadius: 50,
+        // flex: 1,
         textAlign: 'center',
+        margin: 5,
     },
     zoomOut: {
         backgroundColor: 'lightgray',
         paddingVertical: 10,
         paddingHorizontal: 20,
-        flex: 1,
+        borderRadius: 50,
+        // flex: 1,
         textAlign: 'center',
+        margin: 5,
     },
     pressedButton: {
         backgroundColor: 'gray',

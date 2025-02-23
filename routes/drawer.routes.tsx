@@ -38,7 +38,7 @@ const style = StyleSheet.create({
 
     },
     drawer: {
-        width: 200,
+        width: 240,
     },
     itens: {
 

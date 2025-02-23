@@ -75,7 +75,7 @@ export default function Play({ numeroHino}: { numeroHino: number }) {
     }, [navigation, sound]);
 
     return (
-        <View style={style.container}>
+        <View style={[style.container, isPressed ? style.pressed : style.container ]}>
             <Icon
                 name={isPlaying ? 'pause' : 'play-circle'}
                 size={40}
@@ -95,18 +95,22 @@ export default function Play({ numeroHino}: { numeroHino: number }) {
 const style = StyleSheet.create({
     container: {
         justifyContent: 'center',
-        alignItems: 'center',
-        flex: 1,
+        // backgroundColor: 'lightgray',
+        flexDirection: 'row',
+        // flex: 1,
+        margin: 5,
+        borderRadius: 50,
     },
     icon: {
+        textAlignVertical: 'center',
+        paddingVertical: 10,
+        paddingHorizontal: 20,
         backgroundColor: 'lightgray',
         borderRadius: 50,
-        padding: 5,
-        marginBottom: 10,
-        textAlign: 'center',
     },
     pressed: {
         backgroundColor: 'gray',
+        borderRadius: 50,
         color: 'white',
     },
 });

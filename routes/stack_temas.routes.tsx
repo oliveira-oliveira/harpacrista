@@ -20,7 +20,9 @@ export default function StackTesteRoutes(props:any) {
                 component={HinosPorTema}
                 options={{
                     title: 'Hinos por tema',
+                    // eslint-disable-next-line react/no-unstable-nested-components
                     headerLeft: () => (
+                        // eslint-disable-next-line react-native/no-inline-styles
                         <Text onPress={() => props.navigation.openDrawer()} style={{ marginLeft: 15, marginRight: 10 }}>
                             <Icon name="menu" size={25} color="black" />
                         </Text>

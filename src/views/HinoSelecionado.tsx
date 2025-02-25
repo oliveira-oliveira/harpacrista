@@ -8,9 +8,12 @@ import todosHinos from '../Hinos/hinos.json';
 import Play from '../components/Play';
 
 export default function HinoSelecionado ({ route }: any) {
+    const { hinoSelecionado, pararHino } = route.params;
+
     const[zoom, setZoom] = useState(14);
     const[isPressed, setIsPressed] = useState('');
     const[loading, setLoading] = useState(true);
+    const [stopHino, setStopHino] = useState(pararHino);
 
     useEffect(() => {
         setTimeout(() => {
@@ -18,7 +21,22 @@ export default function HinoSelecionado ({ route }: any) {
         }, 500);
     }, []);
 
-    const { hinoSelecionado } = route.params;
+    useEffect(() => {
+        if (pararHino) {
+            setStopHino(true);
+            setTimeout(() => {
+                setStopHino(false);
+            }, 200);
+        }
+    }, [pararHino]);
+
+    useEffect(() => {
+        return () => {
+            console.log('Tela desmontada, parando áudio...');
+            setStopHino(true);
+        };
+    }, []);
+
     const proximoHino = hinoSelecionado.number <= todosHinos.length ? todosHinos[hinoSelecionado.number] : null;
     const anteriorHino = hinoSelecionado.number <= todosHinos.length ? todosHinos[hinoSelecionado.number - 2] : null;
 
@@ -49,36 +67,36 @@ export default function HinoSelecionado ({ route }: any) {
                                         null
                                     }
                     >
-                            <Text style={style.title}>{hinoSelecionado.number} - {hinoSelecionado.title}</Text>
-                                {
-                                    hinoSelecionado.verses.map((verso: any) => (
-                                        <Text
-                                            style={verso.chorus ? style.chorus : style.verse}
-                                            key={verso.sequence}
-                                        >
-                                            <Text>
-                                                {verso.chorus ? (
-                                                    <Text style={[style.sequence, { fontSize: zoom }]}>
-                                                    {'\n'}{verso.lyrics}
+                        <Text style={style.title}>{hinoSelecionado.number} - {hinoSelecionado.title}</Text>
+                            {
+                                hinoSelecionado.verses.map((verso: any) => (
+                                    <Text
+                                        style={verso.chorus ? style.chorus : style.verse}
+                                        key={verso.sequence}
+                                    >
+                                        <Text>
+                                            {verso.chorus ? (
+                                                <Text style={[style.sequence, { fontSize: zoom }]}>
+                                                {'\n'}{verso.lyrics}
+                                                </Text>
+                                            ) : (
+                                                <>
+                                                {verso.sequence > 2 ? (
+                                                    <Text style={style.sequence}>
+                                                        {verso.sequence - (chorus ? 1 : 0)}
                                                     </Text>
                                                 ) : (
-                                                    <>
-                                                    {verso.sequence > 2 ? (
-                                                        <Text style={style.sequence}>
-                                                            {verso.sequence - (chorus ? 1 : 0)}
-                                                        </Text>
-                                                    ) : (
-                                                        <Text style={style.sequence}>{verso.sequence}</Text>
-                                                    )}
-                                                    {'\n'}
-                                                        <Text style={{ fontSize: zoom }}>{verso.lyrics}</Text>
-                                                    </>
+                                                    <Text style={style.sequence}>{verso.sequence}</Text>
                                                 )}
-                                                </Text>
-                                        </Text>
-                                    ))
-                                }
-                            <Text style={style.autor}>Autor: {hinoSelecionado.author}</Text>
+                                                {'\n'}
+                                                    <Text style={{ fontSize: zoom }}>{verso.lyrics}</Text>
+                                                </>
+                                            )}
+                                            </Text>
+                                    </Text>
+                                ))
+                            }
+                        <Text style={style.autor}>Autor: {hinoSelecionado.author}</Text>
                     </NavegacaoStack>
                 </ScrollView>
             )
@@ -96,7 +114,7 @@ export default function HinoSelecionado ({ route }: any) {
                         isPressed === 'zoom-out' && style.pressedButton,
                     ])}
                 />
-                <Play numeroHino={hinoSelecionado.number} />
+                <Play numeroHino={hinoSelecionado.number} stopHino={stopHino} />
                 <Icon
                     name="zoom-in"
                     size={40}

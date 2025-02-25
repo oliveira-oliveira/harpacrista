@@ -4,7 +4,7 @@ import Sound from 'react-native-sound';
 import Icon from 'react-native-vector-icons/Feather';
 import { useNavigation } from '@react-navigation/native';
 
-export default function Play({ numeroHino}: { numeroHino: number }) {
+export default function Play({ numeroHino, stopHino}: { numeroHino: number; stopHino: boolean }) {
     const [sound, setSound] = useState<Sound | null>(null);
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
     const [isPressed, setIsPressed] = useState('');
@@ -58,6 +58,32 @@ export default function Play({ numeroHino}: { numeroHino: number }) {
             playAudio();
         }
     };
+
+    useEffect(() => {
+        if (stopHino && sound) {
+            console.log('Parando áudio ao trocar de hino...');
+            sound.stop(() => {
+                sound.release();
+                setSound(null);
+                setIsPlaying(false);
+                console.log('Áudio parado e liberado.');
+            });
+        }
+    }, [sound, stopHino]);
+
+    useEffect(() => {
+        return () => {
+            if (sound) {
+                console.log('Parando áudio ao desmontar a tela...');
+                sound.stop(() => {
+                    sound.release();
+                    setSound(null);
+                    setIsPlaying(false);
+                    console.log('Áudio parado ao desmontar.');
+                });
+            }
+        };
+    }, [numeroHino, sound]);
 
     useEffect(() => {
         const unsubscribe = navigation.addListener('blur', () => {

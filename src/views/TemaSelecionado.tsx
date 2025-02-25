@@ -25,7 +25,9 @@ export default function TemaSelecionado({ route }: any | null) {
                     <Text
                         style={styles.text}
                         key={hinoTema.number}
-                        onPress={() => navigation.navigate('HinoSelecionado', { hino: hinoTema })}
+                        onPress={() => {
+                            navigation.navigate('HinoSelecionado', { hinoSelecionado : hinoTema });
+                        }}
                     >
                         {hinoTema.number} <Icon name="chevron-right" size={15} />  {hinoTema.title}
                     </Text>

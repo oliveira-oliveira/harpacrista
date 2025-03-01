@@ -1,17 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import hinos from '../Hinos/hinos.json';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/Feather'; //https://feathericons.com/
-import { useNavigation } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 
 export default function Favoritos() {
     const [favoritos, setFavoritos] = useState<number[]>([]);
     const navigation = useNavigation();
 
-    useEffect(() => {
-        loadFavoritos();
-    }, [favoritos]);
+    useFocusEffect(
+        useCallback(() => {
+            loadFavoritos();
+        }, [])
+    );
 
     const loadFavoritos = async () => {
         const storedFavorites = await AsyncStorage.getItem('@favoritos');
@@ -53,7 +55,15 @@ export default function Favoritos() {
     return (
         <ScrollView>
             <View>
-                {hinosFavoritos(favoritos, navigation)}
+                {
+                    favoritos.length > 0 ?
+                    hinosFavoritos(favoritos, navigation) :
+                    <View>
+                        <Text style={styles.mensagem}>
+                            Você não favoritou nenhum hino ainda.
+                        </Text>
+                    </View>
+                }
             </View>
         </ScrollView>
     );
@@ -78,5 +88,10 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: 'transparent',
         fontSize: 16,
+    },
+    mensagem: {
+        textAlign: 'center',
+        fontSize: 18,
+        marginTop: '70%',
     },
 });

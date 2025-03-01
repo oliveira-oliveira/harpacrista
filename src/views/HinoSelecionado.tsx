@@ -20,7 +20,7 @@ export default function HinoSelecionado ({ route }: any) {
         setTimeout(() => {
             setLoading(false);
         }, 500);
-    }, []);
+    }, [favorito]);
 
     useEffect(() => {
         loadFavorites();

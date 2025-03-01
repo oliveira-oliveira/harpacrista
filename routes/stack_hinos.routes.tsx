@@ -9,9 +9,9 @@ import Icon from 'react-native-vector-icons/Feather'; //https://feathericons.com
 
 const Stack = createStackNavigator();
 
-export default function StackRoutes(props:any) {
+export default function StackHinosRoutes(props:any) {
     return (
-        <Stack.Navigator>
+        <Stack.Navigator screenOptions={{ headerShown: true }}>
             <Stack.Screen
                 name="Harpa Cristã"
                 component={HarpaCrista}
@@ -31,3 +31,15 @@ export default function StackRoutes(props:any) {
         </Stack.Navigator>
     );
 }
+
+// const styles = StyleSheet.create({
+//     tabBar: {
+//         width: 240,
+//     },
+//     itens: {
+//         marginLeft: 50000,
+//         justifyContent: 'center',
+//         backgroundColor: 'green',
+//         color: 'green'
+//     },
+// });

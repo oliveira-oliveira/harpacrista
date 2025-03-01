@@ -22,8 +22,8 @@ export default function HarpaCrista(props: any) {
         const texto = searchText.toLowerCase();
         const filtrados = hinos.filter((hino) =>
             hino.title.toLowerCase().includes(texto) ||
-            hino.number.toString().includes(searchText)
-            //|| hino.verses.some((verso: any) => verso.lyrics.toLowerCase().includes(texto))
+            hino.number.toString().includes(searchText) ||
+            hino.verses.some((verso: any) => verso.lyrics.toLowerCase().includes(texto))
         );
         setHinosFiltrados(filtrados);
     }, [searchText]);
@@ -32,7 +32,9 @@ export default function HarpaCrista(props: any) {
         return (
             <Text
                 style={style.hinos}
-                onPress={() => props.navigation.navigate('HinoSelecionado', { hinoSelecionado: item })}
+                onPress={() => {
+                    props.navigation.navigate('HinoSelecionado', { hinoSelecionado: item });
+                }}
             >
                 {item.number} <Icon name="chevron-right" size={15} /> {item.title}
             </Text>
@@ -47,25 +49,26 @@ export default function HarpaCrista(props: any) {
 
     return (
         <View style={style.container}>
-            <View style={style.pesquisa}>
-                {/* <TextInput */}
-                <Input
-                    placeholder=" Procure o hino pelo nome ou número"
-                    placeholderTextColor="black"
-                    value={searchText}
-                    onChangeText={setSearchText}
-                    leftIcon={<Icon name="search" size={24} />}
-                />
-            </View>
-
             {loading ? (
                 <Loading />
             ) : (
+                <>
+                <View style={style.pesquisa}>
+                    {/* <TextInput */}
+                    <Input
+                        placeholder=" Procure o hino pelo nome ou número"
+                        placeholderTextColor="black"
+                        value={searchText}
+                        onChangeText={setSearchText}
+                        leftIcon={<Icon name="search" size={22} />}
+                    />
+                </View>
                 <FlatList
                     keyExtractor={(hino) => hino._id.$oid}
                     data={hinosFiltrados}
                     renderItem={getHinosItem}
                 />
+                </>
             )}
         </View>
     );

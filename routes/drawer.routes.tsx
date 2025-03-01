@@ -1,10 +1,11 @@
 /* eslint-disable react/react-in-jsx-scope */
 
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import StackRoutes from './stack_hinos.routes';
-import StackTesteRoutes from './stack_temas.routes';
+import StackHinosRoutes from './stack_hinos.routes';
+import StackTemasRoutes from './stack_temas.routes';
 import { StyleSheet } from 'react-native';
-//import Icon from 'react-native-vector-icons/Feather'; //https://feathericons.com/
+import Icon from 'react-native-vector-icons/Feather';
+import StackFavoritosRoutes from './stack_favoritos.routes';
 
 const Drawer = createDrawerNavigator();
 
@@ -22,12 +23,29 @@ export default function DrawerRoutes() {
         >
             <Drawer.Screen
                 name="Harpa Cristã"
-                component={StackRoutes}
+                component={StackHinosRoutes}
+                options={{
+                    //headerShown: false,
+                    drawerIcon: ({ color, size }) => (
+                        <Icon name="book-open" color={color} size={size} />),
+                }}
             />
             <Drawer.Screen
-                name="Hinos por temas"
-                component={StackTesteRoutes}
-                options={{ headerShown: false }}
+                name="Temas"
+                component={StackTemasRoutes}
+                options={{
+                    headerShown: false,
+                    drawerIcon: ({ color, size }) => (
+                        <Icon name="list" color={color} size={size} />), }}
+                />
+            <Drawer.Screen
+                name="Favoritos"
+                component={StackFavoritosRoutes}
+                options={{
+                    headerTitle: 'Favoritos',
+                    drawerIcon: ({ color, size }) => (
+                        <Icon name="star" color={color} size={size} />),
+                }}
             />
         </Drawer.Navigator>
     );

@@ -76,15 +76,15 @@ const styles = StyleSheet.create({
         top: 340,
         backgroundColor: 'lightgray',
         borderRadius: 50,
-        padding: 5,
+        padding: 7,
     },
     iconAvancar: {
         position: 'absolute',
-        right: 10,
+        right: 7,
         top: 340,
         backgroundColor: 'lightgray',
         borderRadius: 50,
-        padding: 5,
+        padding: 10,
     },
     pressed: {
         backgroundColor: 'gray',

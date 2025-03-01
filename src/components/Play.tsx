@@ -121,22 +121,17 @@ export default function Play({ numeroHino, stopHino}: { numeroHino: number; stop
 const style = StyleSheet.create({
     container: {
         justifyContent: 'center',
-        // backgroundColor: 'lightgray',
         flexDirection: 'row',
-        // flex: 1,
         margin: 5,
         borderRadius: 50,
     },
     icon: {
-        textAlignVertical: 'center',
-        paddingVertical: 10,
-        paddingHorizontal: 20,
         backgroundColor: 'lightgray',
+        padding: 7,
         borderRadius: 50,
     },
     pressed: {
         backgroundColor: 'gray',
-        borderRadius: 50,
         color: 'white',
     },
 });

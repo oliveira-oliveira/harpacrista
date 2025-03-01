@@ -1,25 +1,50 @@
 import React, { useEffect, useState } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather'; //https://feathericons.com/
 import Loading from '../components/Loading';
 //import Play from '../components/Play';
 import NavegacaoStack from '../components/NavegacaoStack';
 import todosHinos from '../Hinos/hinos.json';
 import Play from '../components/Play';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function HinoSelecionado ({ route }: any) {
     const { hinoSelecionado, pararHino } = route.params;
-
-    const[zoom, setZoom] = useState(14);
-    const[isPressed, setIsPressed] = useState('');
-    const[loading, setLoading] = useState(true);
+    const [zoom, setZoom] = useState(14);
+    const [isPressed, setIsPressed] = useState('');
+    const [loading, setLoading] = useState(true);
     const [stopHino, setStopHino] = useState(pararHino);
+    const [favorito, setFavorito] = useState<number[]>([]);
 
     useEffect(() => {
         setTimeout(() => {
             setLoading(false);
         }, 500);
     }, []);
+
+    useEffect(() => {
+        loadFavorites();
+    }, []);
+
+    const loadFavorites = async () => {
+        const storedFavorites = await AsyncStorage.getItem('@favoritos');
+        if (storedFavorites) {
+            setFavorito(JSON.parse(storedFavorites));
+        }
+    };
+
+    const toggleFavorito = async (id: number) => {
+        let updatedFavorites = [...favorito];
+
+        if (favorito.includes(id)) {
+            updatedFavorites = updatedFavorites.filter((favId) => favId !== id);
+        } else {
+            updatedFavorites.push(id);
+        }
+
+        setFavorito(updatedFavorites);
+        await AsyncStorage.setItem('@favoritos', JSON.stringify(updatedFavorites));
+    };
 
     useEffect(() => {
         if (pararHino) {
@@ -67,7 +92,22 @@ export default function HinoSelecionado ({ route }: any) {
                                         null
                                     }
                     >
-                        <Text style={style.title}>{hinoSelecionado.number} - {hinoSelecionado.title}</Text>
+                            <View style={style.titleContainer}>
+                                <Text style={style.title}>
+                                    {hinoSelecionado.number} - {hinoSelecionado.title}
+                                </Text>
+                                <TouchableOpacity onPress={() => toggleFavorito(hinoSelecionado.number)}>
+                                    <Icon
+                                        name="star"
+                                        size={25}
+                                        color={
+                                            favorito.includes( hinoSelecionado.number)
+                                                ? "gold"
+                                                : "gray"
+                                        }
+                                    />
+                                </TouchableOpacity>
+                            </View>
                             {
                                 hinoSelecionado.verses.map((verso: any) => (
                                     <Text
@@ -136,12 +176,20 @@ const style = StyleSheet.create({
     container: {
         flex: 1,
     },
+    titleContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-evenly',
+        // marginTop: 20,
+        // marginBottom: 10,
+    },
     title: {
         marginTop: 20,
         marginBottom: 10,
         fontSize: 20,
         fontWeight: 'bold',
-        textAlign: 'center',
+        // textAlign: 'center',
+        // justifyContent: 'space-between',
     },
     verse: {
         margin: 10,
@@ -163,27 +211,19 @@ const style = StyleSheet.create({
     },
     zoomBar: {
         flexDirection: 'row',
-        justifyContent: 'space-evenly',
-        backgroundColor: 'lightgray',
-
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        marginBottom: 5,
     },
     zoomIn: {
         backgroundColor: 'lightgray',
-        paddingVertical: 10,
-        paddingHorizontal: 20,
+        padding: 7,
         borderRadius: 50,
-        // flex: 1,
-        textAlign: 'center',
-        margin: 5,
     },
     zoomOut: {
         backgroundColor: 'lightgray',
-        paddingVertical: 10,
-        paddingHorizontal: 20,
+        padding: 7,
         borderRadius: 50,
-        // flex: 1,
-        textAlign: 'center',
-        margin: 5,
     },
     pressedButton: {
         backgroundColor: 'gray',

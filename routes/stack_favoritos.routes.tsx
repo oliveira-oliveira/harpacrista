@@ -2,32 +2,27 @@
 
 import { createStackNavigator } from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/Feather'; //https://feathericons.com/
-import TemaSelecionado from '../src/views/TemaSelecionado';
-import HinosPorTema from '../src/views/HinosPorTema';
+import { StyleSheet, Text } from 'react-native';
 import HinoSelecionado from '../src/views/HinoSelecionado';
-import { Text } from 'react-native';
+import HinosFavoritos from '../src/views/HinosFavoritos';
 
 const Stack = createStackNavigator();
 
-export default function StackTemasRoutes(props:any) {
+export default function StackFavoritosRoutes(props:any) {
+
     return (
-        <Stack.Navigator >
+        <Stack.Navigator screenOptions={{ headerStyle: styles.header }}>
             <Stack.Screen
-                name="HinoPorTema"
-                component={HinosPorTema}
+                name="Favoritos"
+                component={HinosFavoritos}
                 options={{
-                    title: 'Temas',
+                    headerShown: true,
                     headerLeft: () => (
                         <Text onPress={() => props.navigation.openDrawer()} style={{ marginLeft: 15, marginRight: 10 }}>
                             <Icon name="menu" size={25} color="black" />
                         </Text>
                     ),
                 }}
-            />
-            <Stack.Screen
-                name="TemaSelecionado"
-                component={TemaSelecionado}
-                options={{ title: 'Hinos', headerShown: true }}
             />
             <Stack.Screen
                 name="HinoSelecionado"
@@ -37,3 +32,10 @@ export default function StackTemasRoutes(props:any) {
         </Stack.Navigator>
     );
 }
+
+const styles = StyleSheet.create({
+    header: {
+        color: 'green',
+        backgroundColor: '#fff',
+    },
+});

@@ -4,7 +4,6 @@ import Sound from 'react-native-sound';
 import Icon from 'react-native-vector-icons/Feather';
 //import Icon from 'react-native-vector-icons/FontAwesome6';
 import { useNavigation } from '@react-navigation/native';
-import { Alert } from 'react-native';
 
 export default function Play({ numeroHino, stopHino}: { numeroHino: number; stopHino: boolean }) {
     const [sound, setSound] = useState<Sound | null>(null);
@@ -29,26 +28,21 @@ export default function Play({ numeroHino, stopHino}: { numeroHino: number; stop
         }
     };
 
-    const startNewAudio = async (url: string) => {
+    const startNewAudio = (url: string) => {
         const newSound = new Sound(url, undefined, (error) => {
             if (error) {
                 console.log('Erro ao carregar o som:', error);
-                Alert.alert('Erro ao carregar o som. Verifique sua conexão com a internet:', error);
                 return;
             }
-            setSound(newSound);
-        });
 
-        await new Promise((resolve, reject) => {
+            setSound(newSound);
+
             newSound.play((success) => {
-                if (success) {
-                    setIsPlaying(true);
-                    resolve(null);
-                } else {
+                if (!success) {
                     console.log('Erro ao reproduzir o áudio');
-                    reject('Erro ao reproduzir o áudio');
                 }
             });
+            setIsPlaying(true);
         });
     };
 

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import Icon from 'react-native-vector-icons/Feather'; //https://feathericons.com/
+import IconZoom from 'react-native-vector-icons/Feather'; //https://feathericons.com/
+//import Icon from 'react-native-vector-icons/FontAwesome6'; //https://feathericons.com/
+import Icon from 'react-native-vector-icons/FontAwesome'; //https://fontello.com/
 import Loading from '../components/Loading';
 //import Play from '../components/Play';
 import NavegacaoStack from '../components/NavegacaoStack';
@@ -97,9 +99,9 @@ export default function HinoSelecionado ({ route }: any) {
                                     {hinoSelecionado.number} - {hinoSelecionado.title}
                                 </Text>
                                 <TouchableOpacity onPress={() => toggleFavorito(hinoSelecionado.number)}>
-                                    <Icon
+                                    <Icon style={style.iconStar}
                                         name="star"
-                                        size={25}
+                                        size={30}
                                         color={
                                             favorito.includes( hinoSelecionado.number)
                                                 ? "gold"
@@ -142,7 +144,7 @@ export default function HinoSelecionado ({ route }: any) {
             )
         }
             <View style={style.zoomBar}>
-                <Icon
+                <IconZoom
                     name="zoom-out"
                     size={40}
                     color="black"
@@ -155,7 +157,7 @@ export default function HinoSelecionado ({ route }: any) {
                     ])}
                 />
                 <Play numeroHino={hinoSelecionado.number} stopHino={stopHino} />
-                <Icon
+                <IconZoom
                     name="zoom-in"
                     size={40}
                     color="black"
@@ -178,10 +180,13 @@ const style = StyleSheet.create({
     },
     titleContainer: {
         flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-evenly',
+        alignItems: 'baseline',
+        justifyContent: 'space-between',
         // marginTop: 20,
         // marginBottom: 10,
+    },
+    iconStar: {
+        marginLeft: 20,
     },
     title: {
         marginTop: 20,

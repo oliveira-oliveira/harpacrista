@@ -4,6 +4,7 @@ import { FlatList, StyleSheet, Text, View } from 'react-native';
 import hinos from '../Hinos/hinos.json';
 import { useFocusEffect } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Feather';
+//import Icon from 'react-native-vector-icons/fontawesome6'; //https://feathericons.com/
 import Loading from '../components/Loading';
 import { Input } from 'react-native-elements';
 
@@ -56,11 +57,11 @@ export default function HarpaCrista(props: any) {
                 <View style={style.pesquisa}>
                     {/* <TextInput */}
                     <Input
-                        placeholder=" Procure o hino pelo nome ou número"
+                        placeholder="Procure o hino pelo nome ou número"
                         placeholderTextColor="black"
                         value={searchText}
                         onChangeText={setSearchText}
-                        leftIcon={<Icon name="search" size={22} />}
+                        leftIcon={<Icon name="search" size={20} />}
                     />
                 </View>
                 <FlatList

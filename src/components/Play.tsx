@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, View  } from 'react-native';
 import Sound from 'react-native-sound';
 import Icon from 'react-native-vector-icons/Feather';
+//import Icon from 'react-native-vector-icons/FontAwesome6';
 import { useNavigation } from '@react-navigation/native';
+import { Alert } from 'react-native';
 
 export default function Play({ numeroHino, stopHino}: { numeroHino: number; stopHino: boolean }) {
     const [sound, setSound] = useState<Sound | null>(null);
@@ -27,19 +29,26 @@ export default function Play({ numeroHino, stopHino}: { numeroHino: number; stop
         }
     };
 
-    const startNewAudio = (url: string) => {
+    const startNewAudio = async (url: string) => {
         const newSound = new Sound(url, undefined, (error) => {
             if (error) {
                 console.log('Erro ao carregar o som:', error);
+                Alert.alert('Erro ao carregar o som. Verifique sua conexão com a internet:', error);
                 return;
             }
             setSound(newSound);
+        });
+
+        await new Promise((resolve, reject) => {
             newSound.play((success) => {
-                if (!success) {
+                if (success) {
+                    setIsPlaying(true);
+                    resolve(null);
+                } else {
                     console.log('Erro ao reproduzir o áudio');
+                    reject('Erro ao reproduzir o áudio');
                 }
             });
-            setIsPlaying(true);
         });
     };
 
@@ -103,7 +112,7 @@ export default function Play({ numeroHino, stopHino}: { numeroHino: number; stop
     return (
         <View style={[style.container, isPressed ? style.pressed : style.container ]}>
             <Icon
-                name={isPlaying ? 'pause' : 'play-circle'}
+                name={isPlaying ? 'pause-circle' : 'play-circle'}
                 size={40}
                 color={'black'}
                 onPress={toggleAudio}

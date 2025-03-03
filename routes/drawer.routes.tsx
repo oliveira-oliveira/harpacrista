@@ -5,6 +5,8 @@ import StackHinosRoutes from './stack_hinos.routes';
 import StackTemasRoutes from './stack_temas.routes';
 import { StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
+import Iconstar from 'react-native-vector-icons/FontAwesome'; //https://fontello.com/
+//import IconMaterial from 'react-native-vector-icons/MaterialCommunityIcons';
 import StackFavoritosRoutes from './stack_favoritos.routes';
 
 const Drawer = createDrawerNavigator();
@@ -27,7 +29,7 @@ export default function DrawerRoutes() {
                 options={{
                     //headerShown: false,
                     drawerIcon: ({ color, size }) => (
-                        <Icon name="book-open" color={color} size={size} />),
+                        <Icon name="book-open" color={color ? 'black' : color} size={size} />),
                 }}
             />
             <Drawer.Screen
@@ -36,7 +38,7 @@ export default function DrawerRoutes() {
                 options={{
                     headerShown: false,
                     drawerIcon: ({ color, size }) => (
-                        <Icon name="list" color={color} size={size} />), }}
+                        <Icon name="list" color={color ? 'black' : color} size={size} />), }}
                 />
             <Drawer.Screen
                 name="Favoritos"
@@ -44,7 +46,8 @@ export default function DrawerRoutes() {
                 options={{
                     headerTitle: 'Favoritos',
                     drawerIcon: ({ color, size }) => (
-                        <Icon name="star" color={color} size={size} />),
+                        <Iconstar name="star" color={color ? 'gold' : color} size={size} />
+                    ),
                 }}
             />
         </Drawer.Navigator>

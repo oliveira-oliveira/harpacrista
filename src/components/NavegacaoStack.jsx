@@ -76,11 +76,11 @@ const styles = StyleSheet.create({
         top: 340,
         backgroundColor: 'lightgray',
         borderRadius: 50,
-        padding: 7,
+        padding: 10,
     },
     iconAvancar: {
         position: 'absolute',
-        right: 7,
+        right: 10,
         top: 340,
         backgroundColor: 'lightgray',
         borderRadius: 50,

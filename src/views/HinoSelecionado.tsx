@@ -181,7 +181,7 @@ const style = StyleSheet.create({
     titleContainer: {
         flexDirection: 'row',
         alignItems: 'baseline',
-        justifyContent: 'space-between',
+        justifyContent: 'space-evenly',
         // marginTop: 20,
         // marginBottom: 10,
     },
@@ -207,8 +207,9 @@ const style = StyleSheet.create({
     },
     autor: {
         textAlign: 'right',
-        marginRight: 15,
-        marginBottom: 15,
+        marginRight: 25,
+        marginBottom: 25,
+        padding: 10,
         fontSize: 15,
     },
     sequence: {

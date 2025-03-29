@@ -104,8 +104,8 @@ export default function HinoSelecionado ({ route }: any) {
                                         size={30}
                                         color={
                                             favorito.includes( hinoSelecionado.number)
-                                                ? "gold"
-                                                : "gray"
+                                                ? 'gold'
+                                                : 'gray'
                                         }
                                     />
                                 </TouchableOpacity>
@@ -182,18 +182,20 @@ const style = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'baseline',
         justifyContent: 'space-evenly',
-        // marginTop: 20,
-        // marginBottom: 10,
+        marginTop: 10,
+        marginLeft: 20,
+        marginRight: 20,
+        padding: 10,
+        width: '80%',
+        fontSize: 15,
     },
     iconStar: {
         marginLeft: 20,
     },
     title: {
-        marginTop: 20,
-        marginBottom: 10,
         fontSize: 20,
         fontWeight: 'bold',
-        // textAlign: 'center',
+        textAlign: 'center',
         // justifyContent: 'space-between',
     },
     verse: {
